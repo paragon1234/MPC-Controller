@@ -1,8 +1,8 @@
 # MPC-Controller
 
-## Model
+## Kinematic model
 
-A simple Kinematic model (ignores tire forces, gravity, mass, etc) was used for the Controller. Some attempts to build more complicated dynamic model were made, but with low success. It is essential to know parameters of the vehicle (such as law of response on the throttle, geometry of the car, drag model, tires properties, etc) to construct a reasonable dynamic model but such parameters are not derectly accessible from provided materials for the project. 
+A kinematic model is implemented to control the vehicle around the track. Kinematic models are simplifications of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. Also, dynamic model parameters are not derectly accessible from provided materials for the project. 
 
 Position (_x,y_), heading (_ψ_) and velocity (_v_) form the vehicle state vector:
 
