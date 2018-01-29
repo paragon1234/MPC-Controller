@@ -42,7 +42,7 @@ Errors: cross track error (_cte_) and _ψ_ error (_eψ_) were used to build the 
 
 ## 3. Implementation
 
-you'll use MPC to follow the trajectory along a line.
+We'll use MPC to follow the trajectory along a line.
 
 Steps:
 
