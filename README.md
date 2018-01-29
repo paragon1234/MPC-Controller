@@ -1,9 +1,9 @@
 # MPC-Controller
 
 ## 1. Objective
-The main goal of the project is to implement in C++ Model Predictive Control (MPC) to drive the car (to follow a reference trajectory along a line) around the track in a simulator. The program uses a simple Global Kinematic Model. The simulator provides reference waypoints (yellow line in the demo video) via websocket, and we use MPC to compute steering and throttle commands to drive the car. The solution must be robust to 100ms latency, since it might encounter in real-world application.
+The main goal of the project is to implement in C++ Model Predictive Control (MPC) to drive the car (to follow a reference trajectory) around the track in a simulator. The program uses a simple Global Kinematic Model. The simulator provides reference trajectory (yellow line at the track centre, in the demo video) via websocket. We use MPC to compute steering and throttle commands to align the car from its current position to the reference trajectory. This computation is performed at every time step because after the application of commands, car has moved and now has a new reference. The solution must be robust to 100ms latency, since it might encounter in real-world application.
 
-In this project, the MPC optimize the actuators (steering and throttle), simulate the vehicle trajectory, and minimize the cost like cross-track error.
+In this project, the MPC optimize the actuators (provides optimized steering and throttle values) that minimize the cost like cross-track error, and subject to constraints like steering/throttle values cannot change abruptly.
 
 ## 2. Kinematic model
 
@@ -51,7 +51,7 @@ Steps:
 * Calculate initial cross track error and orientation error values.
 * Define the components of the cost function (state, actuators, etc). 
 * Define the model constraints. These are the state update equations defined in the Vehicle Models module.
+* Compute optimized control inputs using Ipopt tool
 
 
-Ipopt is the tool we'll be using to optimize the control inputs [δ1,a1,...,δN−1,aN−1]. It's able to find locally optimal values (non-linear problem!) while keeping the constraints set directly to the actuators and the constraints defined by the vehicle model. Ipopt requires we give it the jacobians and hessians directly - it does not compute them for us. Hence, we need to either manually compute them or have a library do this for us. Luckily, there is a library called CppAD which does exactly this.
-
+Ipopt is the tool we'll be using to optimize the control inputs [δ1,a1,...,δN−1,aN−1]. It's able to find locally optimal values (non-linear problem!) while keeping the constraints set directly to the actuators and the constraints defined by the vehicle model. Ipopt requires we give it the jacobians and hessians directly - it does not compute them for us. Instead of manually computing them, we use a CppAD library do this for us.
