@@ -76,7 +76,7 @@ Actual control inputs to the vehicle were "shifted" into the future by 100 ms la
 
 - **Cost Function Parameters**: 
 
-The cost function parameters were tuned by try-and-error method (MPC.cpp lines 55-71).
+The cost function parameters were tuned by try-and-error method (MPC.cpp lines 55-71), taking into consideration that our primary objective is to minimize cte and epsi so that should hold the highest weight.
 
 ## 5. Dependencies
 
