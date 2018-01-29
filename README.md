@@ -55,3 +55,21 @@ Steps:
 
 
 Ipopt is the tool we'll be using to optimize the control inputs [δ1,a1,...,δN−1,aN−1]. It's able to find locally optimal values (non-linear problem!) while keeping the constraints set directly to the actuators and the constraints defined by the vehicle model. Ipopt requires we give it the jacobians and hessians directly - it does not compute them for us. Instead of manually computing them, we use a CppAD library do this for us.
+
+## 4. Design Choices
+
+- **Timestep Length and Elapsed Duration (N & dt)**: 
+
+The values chosen for N and dt are 10 and 0.1, respectively. Admittedly, this was at the suggestion of Udacity's provided office hours for the project.
+
+Adjusting either N or dt (even by small amounts) often produced erratic behavior. Other values tried include 20 / 0.05, 8 / 0.125, 6 / 0.15, and many others. 
+
+- **Polynomial Fitting and MPC Preprocessing**:
+
+The waypoints are preprocessed by transforming them to the vehicle's local coordinate system (see main.cpp lines 108-113), such that the vehicle's x and y coordinates are now at the origin (0, 0) and the orientation angle is also zero. 
+
+A 3rd order polynomial is used as an estimate of the current road curve ahead, as it is a good fit of most roads.
+
+- **Model Predictive Control that handles 100ms Latency**: 
+
+The original kinematic equations depend upon the actuations from the previous timestep, but with a delay of 100ms (which happens to be the timestep interval) the actuations are applied another timestep later, so the equations have been altered to account for this (MPC.cpp lines 104-107). 
