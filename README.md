@@ -2,8 +2,7 @@
 
 ## Kinematic model
 
-A kinematic model is implemented to control the vehicle around the track. Kinematic models are simplifications of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. Also, dynamic model parameters are not derectly accessible from provided materials for the project. 
-
+A kinematic model is implemented to control the vehicle around the track. Kinematic models are simplifications of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. At low and moderate speeds, kinematic models often approximate the actual vehicle dynamics.
 
 **States**: 
 
@@ -23,7 +22,7 @@ Actuators: _[δ,a]_
 
 **Update equations**:
 
-The kinematic model can predict the state on the next time step by taking into account the current state and actuators as follows:
+The kinematic model can predict the state on the next time step (state at t+1) from the current state (state vector at t) and actuators values as follows:
 
 ![Kinematic model](readme_img/eq1.png)
 
