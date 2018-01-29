@@ -36,6 +36,10 @@ where _Lf_ measures the distance between the front of the vehicle and its center
 
 **Model Errors**:
 
+## 3. Implementation
+
+Ipopt is the tool we'll be using to optimize the control inputs [δ1,a1,...,δN−1,aN−1][\delta_1, a_1, ..., \delta_{N-1}, a_{N-1}][δ1​,a1​,...,δN−1​,aN−1​]. It's able to find locally optimal values (non-linear problem!) while keeping the constraints set directly to the actuators and the constraints defined by the vehicle model. Ipopt requires we give it the jacobians and hessians directly - it does not compute them for us. Hence, we need to either manually compute them or have a library do this for us. Luckily, there is a library called CppAD which does exactly this.
+
 Errors: cross track error (_cte_) and _ψ_ error (_eψ_) were used to build the cost function for the MPC. They could be updated on a new time step using the following equations:
 
 ![Erroers update model](readme_img/eq2.png)
