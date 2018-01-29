@@ -1,9 +1,9 @@
 # MPC-Controller
 
 ## 1. Objective
-The main goal of the project is to implement in C++ Model Predictive Control (MPC) to drive the car around the track in a simulator. The program uses a simple Global Kinematic Model. The simulator provides reference waypoints (yellow line in the demo video) via websocket, and we use MPC to compute steering and throttle commands to drive the car. The solution must be robust to 100ms latency, since it might encounter in real-world application.
+The main goal of the project is to implement in C++ Model Predictive Control (MPC) to drive the car (to follow a reference trajectory along a line) around the track in a simulator. The program uses a simple Global Kinematic Model. The simulator provides reference waypoints (yellow line in the demo video) via websocket, and we use MPC to compute steering and throttle commands to drive the car. The solution must be robust to 100ms latency, since it might encounter in real-world application.
 
-In this project, the MPC optimize the actuators (steering and throttle), simulate the vehicle trajactory, and minimize the cost like cross-track error.
+In this project, the MPC optimize the actuators (steering and throttle), simulate the vehicle trajectory, and minimize the cost like cross-track error.
 
 ## 2. Kinematic model
 
