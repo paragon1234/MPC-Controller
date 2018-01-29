@@ -1,6 +1,14 @@
 # MPC-Controller
 
-## Kinematic model
+## 1. Objective
+This project is to use Model Predictive Control (MPC) to drive a car in a game simulator. The server provides 
+reference waypoints (yellow line in the demo video) via websocket, and we use MPC to compute steering and throttle commands 
+to drive the car. The solution must be robust to 100ms latency, since it might encounter in real-world application.
+
+In this project, the MPC optimize the actuators (steering and throttle), simulate 
+the vehicle trajactory, and minimize the cost like cross-track error.
+
+## 2. Kinematic model
 
 A kinematic model is implemented to control the vehicle around the track. Kinematic models are simplifications of dynamic models that ignore tire forces, gravity, and mass. This simplification reduces the accuracy of the models, but it also makes them more tractable. At low and moderate speeds, kinematic models often approximate the actual vehicle dynamics.
 
