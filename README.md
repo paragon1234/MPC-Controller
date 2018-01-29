@@ -42,5 +42,16 @@ Errors: cross track error (_cte_) and _ψ_ error (_eψ_) were used to build the 
 
 ## 3. Implementation
 
+you'll use MPC to follow the trajectory along a line.
+
+Steps:
+
+* Set N and dt.
+* Fit the polynomial to the waypoints.
+* Calculate initial cross track error and orientation error values.
+* Define the components of the cost function (state, actuators, etc). 
+* Define the model constraints. These are the state update equations defined in the Vehicle Models module.
+
+
 Ipopt is the tool we'll be using to optimize the control inputs [δ1,a1,...,δN−1,aN−1]. It's able to find locally optimal values (non-linear problem!) while keeping the constraints set directly to the actuators and the constraints defined by the vehicle model. Ipopt requires we give it the jacobians and hessians directly - it does not compute them for us. Hence, we need to either manually compute them or have a library do this for us. Luckily, there is a library called CppAD which does exactly this.
 
